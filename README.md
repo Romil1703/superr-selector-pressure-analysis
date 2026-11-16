@@ -23,8 +23,8 @@ My Round 1 entry for **SupeRR Selector Season 2** (Rajasthan Royals): which T20 
 | 6 | Phil Salt | Josh Hazlewood |
 | 7 | Andre Russell | Mujeeb Ur Rahman |
 | 8 | Cameron Green | Mahedi Hasan |
-| 9 | Harry Brook | Mohammad Nawaz |
-| 10 | Jos Buttler | Wanindu Hasaranga |
+| 9 | Harry Brook | Wanindu Hasaranga |
+| 10 | Jos Buttler | Bhuvneshwar Kumar |
 
 ## What's here
 
@@ -35,7 +35,7 @@ My Round 1 entry for **SupeRR Selector Season 2** (Rajasthan Royals): which T20 
 | `code/charts.py` | Draws the figures |
 | `code/report_tables.py` | Builds every table in the report from the results files |
 | `code/build_report.js` | Writes the Word report from those tables and figures |
-| `results/batters_ranked.csv`, `results/bowlers_ranked.csv` | Ratings for every eligible batter (86) and bowler (92) |
+| `results/batters_ranked.csv`, `results/bowlers_ranked.csv` | Ratings for every eligible batter (82) and bowler (86) |
 | `results/auction_watchlist_*.csv` | Same rating for players with 60 to 149 pressure balls. Not part of the ranking; used only for the auction section |
 | `results/meta.json` | Model and validation figures |
 
@@ -55,7 +55,8 @@ npm install docx && node code/build_report.js out Methodology_Report.docx
 
 **16 Nov 2026**
 
-- Fixed the opposition weighting. The data pack labels two A-team tournaments (Emerging Teams Asia Cup 2024, Asia Cup Rising Stars 2025) with the same format code as the IPL, and the earlier code treated every team in them as an IPL side. Balls against UAE, Oman, Hong Kong and the A teams were getting full weight instead of 0.6, and those matches were being compared with IPL averages. They are now grouped with T20Is, as the report always described. This moved the bowling top 10 (Narine up to 2nd, Hazlewood to 6th, Hasaranga in at 10th, Abrar Ahmed out) and swapped Brook and Buttler at 9 and 10 in the batting list.
+- Fixed the opposition weighting. The data pack labels two A-team tournaments (Emerging Teams Asia Cup 2024, Asia Cup Rising Stars 2025) with the same format code as the IPL, and the earlier code treated every team in them as an IPL side. Balls against UAE, Oman, Hong Kong and the A teams were getting full weight instead of 0.6, and those matches were being compared with IPL averages. They are now grouped with T20Is, as the report always described. This moved the bowling top 10 (Narine up to 2nd, Hazlewood to 6th) and swapped Brook and Buttler at 9 and 10 in the batting list.
+- Pakistan players are now left out of the ranked lists and the watchlist, because an IPL franchise cannot sign them. Their deliveries still count towards every average. This removes Mohammad Nawaz and Abrar Ahmed from the top of the bowling list; Hasaranga and Bhuvneshwar Kumar take 9th and 10th.
 - Added the auction watchlist and rewrote the auction section around lower-cost players RR could realistically sign.
 - The report is now built by code from the results files.
 

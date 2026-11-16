@@ -112,6 +112,7 @@ C.push(cap("Figure 2. How well each weighting predicts pressure performance in u
 
 C.push(h1("6. Keeping it fair"));
 C.push(b(`**Who qualifies:** a player needs at least 150 pressure balls, at least 15 matches with pressure involvement, and at least one match since January 2025. The last condition removes retired players. ${M.elig_bat} batters and ${M.elig_bowl} bowlers make the cut.`));
+C.push(b("**Pakistan players are left out of the lists.** This ranking is meant to help an IPL franchise, and Pakistan players have not appeared in the IPL since 2008. Their deliveries stay in the data, so they still shape the averages and every other player\u2019s numbers. They are only removed from the ranked lists."));
 C.push(b("**Small samples:** the added average balls drag thin records back toward the middle."));
 C.push(b("**IPL and T20Is:** both are included. Expected values are calculated separately for each, and a ball against an associate nation or an A side counts 0.6 as much as a ball against an IPL team or a full-member nation."));
 C.push(b("**Roles:** comparing within the same situation takes care of openers versus finishers and powerplay versus death bowlers."));
@@ -140,6 +141,8 @@ C.push(b(`**Kuldeep** is the same bowler whatever the situation (${ku[3]} and ${
 C.push(b(`**Kuldeep, Narine and Rashid** are separated by half a run per 100 balls. I have ordered them as the numbers fall, but it is close to a three-way tie at the top.`));
 C.push(b(`**Hazlewood** is the one who lifts. He is ${hz[3]} under pressure against ${hz[4]} normally, and his economy drops by a full run.`));
 C.push(b("**Narine, Bumrah and Mujeeb** are outstanding in normal play and good, rather than great, under pressure. The rating gives them credit for both."));
+const bk = bowl("Bhuvneshwar");
+if (bk) C.push(b(`**Bhuvneshwar** is the least secure pick. He takes 10th on his normal level (${bk[4]}); under pressure he is about average (${bk[3]}), and he makes the top 10 in only ${bk[11]} of resamples.`));
 C.push(b(`${["Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten"][T.facts.spin_in_top10]} of the ten are spinners. I do not think that is a quirk. Most pressure balls come in chases and through the middle overs, and that is where a good spinner takes hold of a game.`));
 
 C.push(h1("8. What this means for Rajasthan Royals"));
@@ -147,17 +150,18 @@ C.push(h2("The auction, and what RR can afford"));
 C.push(p("The IPL 2027 auction is a one-day mini-auction in Goa on 16 December 2026. Franchises have until 17 November to hand in their retained and released lists, so as I write this (16 November) no official list exists. Two public facts shape this section."));
 C.push(b("**RR were close.** They finished fourth, won the Eliminator and lost Qualifier 2 to Gujarat Titans. The match file in the data pack shows the same."));
 C.push(b("**RR have very little room.** Their purse is reported at about ₹7.65 crore before any releases, with all 25 squad places and all eight overseas slots filled. They have to release players before they can bid at all, and even then they will be shopping at the cheaper end of the market."));
-C.push(p("So I have not listed Hazlewood, Klaasen or Tim David as targets. They sit near the top of my rankings, but they are expected to be retained and are far beyond this purse. I looked for lesser-known players who meet three tests: no franchise held them in IPL 2026 according to the squad file, nothing bars them from playing (so no Pakistan players), and they have a pressure record in this data that anyone can check in my results files."));
+C.push(p("So I have not listed Hazlewood, Klaasen or Tim David as targets. They sit near the top of my rankings, but they are expected to be retained and are far beyond this purse. I looked for lesser-known players who meet three tests: no franchise held them in IPL 2026 according to the squad file, nothing in the reports I read bars them from playing, and they have a pressure record in this data that anyone can check in my results files."));
 C.push(h2("Where the squad is short"));
 C.push(p(`Below is every Royals player who qualifies, ranked against all ${M.elig_bat} eligible batters and ${M.elig_bowl} eligible bowlers.`, { keepNext: true }));
 C.push(table(["RR batter", "Rank", "Pressure", "Normal", "Pr. SR"], T.rrbat, [3, 1, 1.2, 1.2, 1.2], { frac: 0.6, size: 18 }));
 C.push(gap());
 C.push(table(["RR bowler", "Rank", "Pressure", "Normal", "Pr. econ", "Death pr. econ (balls)"], T.rrbowl, [3, 1, 1.2, 1.2, 1.2, 2.2], { frac: 0.78, size: 18 }));
 C.push(gap());
-C.push(p(`**Bowling under pressure is the weak spot.** Not one Royals bowler is in the top 40, and ${["none", "one", "two", "three", "four", "all five"][T.facts.rr_bowl_below_avg_pressure]} of the five are below average on pressure balls. The back-up seamers do not change the picture: Milne, Burger, Deshpande and Maphaka have too few pressure balls to be ranked, and all four have below-average ratings on the balls they do have. Published previews of RR’s auction say the same from the outside and name death bowling as the first priority.`));
-C.push(p("**The top order is settled; the middle is not.** Sooryavanshi is first and Jaiswal is 20th. Hetmyer, Shanaka and Jadeja sit around 40th, and Jurel and Parag are 53rd and 58th, both below average on pressure balls."));
+C.push(p(`**Bowling under pressure is the weak spot.** The best-placed Royals bowler is ${T.rrbowl[0][1]}th of ${M.elig_bowl}, and ${["none", "one", "two", "three", "four", "all five"][T.facts.rr_bowl_below_avg_pressure]} of the five are below average on pressure balls. The back-up seamers do not change the picture: Milne, Burger, Deshpande and Maphaka have too few pressure balls to be ranked, and all four have below-average ratings on the balls they do have. Published previews of RR’s auction say the same from the outside and name death bowling as the first priority.`));
+const rk = n => T.rrbat.find(r => r[0].includes(n))[1], cb = T.rrbat.find(r => r[0].includes("Curran"))[1], cw = T.rrbowl.find(r => r[0].includes("Curran"))[1];
+C.push(p(`**The top order is settled; the middle is not.** Sooryavanshi is first and Jaiswal is ${rk("Jaiswal")}th. Hetmyer, Shanaka and Jadeja sit around 40th, and Jurel and Parag are ${rk("Jurel")}rd and ${rk("Parag")}th, both below average on pressure balls.`));
 C.push(h2("Widening the net: a watchlist"));
-C.push(p("My ranking needs 150 pressure balls. That bar is right for a top 10, but it hides exactly the kind of player a team with a small purse should be looking at. For this section only, I ran the same rating on players with 60 to 149 pressure balls and at least 8 matches. That adds 81 batters and 77 bowlers. They are **not** part of my ranking. In the tables below a rank in brackets shows where a watchlist player’s rating would sit in the main list. The shrinkage is unchanged, so a thin record cannot produce a big rating."));
+C.push(p("My ranking needs 150 pressure balls. That bar is right for a top 10, but it hides exactly the kind of player a team with a small purse should be looking at. For this section only, I ran the same rating on players with 60 to 149 pressure balls and at least 8 matches. That adds 76 batters and 71 bowlers. They are **not** part of my ranking. In the tables below a rank in brackets shows where a watchlist player’s rating would sit in the main list. The shrinkage is unchanged, so a thin record cannot produce a big rating."));
 C.push(h2("Need 1: a bowler for the tight overs"));
 const wB = [2.5, 1.9, 1.7, 0.9, 0.9, 1.15, 1.8, 1.7, 1.7, 1.0];
 C.push(table(["Target", "Type", "Country", "Rank", "Pr. balls", "Pressure", "Econ pr. / normal", "Death pr. econ (balls)", "Powerplay pr. econ (balls)", "+spells"],
@@ -180,12 +184,12 @@ C.push(b("**George Dockrell** has the highest pressure level of any available ba
 C.push(b("**Towhid Hridoy** holds an innings together (average 85, ahead in 66% of innings) but strikes at 124. He steadies a chase; he does not finish one. He is on the list of seven registered Bangladesh players."));
 C.push(b("**Bhanuka Rajapaksa** is a specialist. He is +10.7 under pressure with a death strike rate of 203, but −19.1 the rest of the time. A late-overs cameo option only."));
 C.push(h2("A trade rumour, tested"));
-C.push(p("Reports have linked Sam Curran with a swap for RCB’s Romario Shepherd. Neither franchise has confirmed it. On my numbers Curran is RR’s lowest-ranked player on both lists (79th of 86 batters, 89th of 92 bowlers), so moving him makes sense. Shepherd would not fix the pressure problem, though. He is a huge +39.5 with the bat on normal balls, but on his 113 pressure balls he is −5.0, striking at 134 and averaging 12, and with the ball he is 91st of 92. He would lift RR in ordinary overs and leave the tight ones as they are."));
+C.push(p(`Reports have linked Sam Curran with a swap for RCB’s Romario Shepherd. Neither franchise has confirmed it. On my numbers Curran is RR’s lowest-ranked player on both lists (${cb}th of ${M.elig_bat} batters, ${cw}rd of ${M.elig_bowl} bowlers), so moving him makes sense. Shepherd would not fix the pressure problem, though. He is a huge +39.5 with the bat on normal balls, but on his 113 pressure balls he is −5.0, striking at 134 and averaging 12, and with the ball he is 85th of ${M.elig_bowl}. He would lift RR in ordinary overs and leave the tight ones as they are.`));
 C.push(h2("Four cautions"));
 C.push(b("**Watchlist players have small samples** (60 to 149 pressure balls). Their numbers are leads for the scouts, and I would not treat them as rankings."));
 C.push(b("**Taskin, Hasan Mahmud, Adair, Chapman and Dockrell have no IPL balls in this data.** Everything I know about them is from T20Is, and they should be priced with that in mind."));
 C.push(b("**Availability is my best reading** of the squad file and press reports on 16 November. The shortlist should be run again once the official pool is out. My results files list every player with his 2026 team, so that is a quick job."));
-C.push(b("**Andre Russell and Mohammad Nawaz** have earned their places in my top 10s on the numbers, but they are not realistic signings. Russell was not in an IPL 2026 squad, and Pakistan players have not appeared in the IPL since 2008."));
+C.push(b("**Andre Russell** has earned his place in my batting top 10 on the numbers, but he was not in an IPL 2026 squad and I would not plan around signing him."));
 
 C.push(h1("9. How far to trust this"));
 C.push(p("I would rather be upfront about how solid these rankings are.", { keepNext: true }));
