@@ -1,5 +1,5 @@
 """SupeRR Selector S2 R1 - Pressure performance analysis.
-Usage: python3 -I analysis.py <data_dir> <out_dir>"""
+Usage: python3 analysis_final.py <data_dir> <out_dir>"""
 import sys, os, numpy as np, pandas as pd
 from sklearn.ensemble import HistGradientBoostingClassifier
 D, OUT = sys.argv[1], sys.argv[2]; os.makedirs(OUT, exist_ok=True)
@@ -34,7 +34,9 @@ mi["balls1"] = mi.first_inn_revised_overs.apply(lambda v: 120 if pd.isna(v) else
 b["target"] = b.match_id.map(mi.target); b["balls_tot"] = np.where(b.innings == 1, b.match_id.map(mi.balls1), b.match_id.map(mi.balls2))
 b["won"] = (b.batting_team_id == b.match_id.map(mi.win_team_id)).astype(int)
 b["knock"] = b.match_id.map(mi.knock_out).fillna(0)
-b["fmt"] = b.match_id.map(mi.match_format)
+# IPL vs everything else. The pack also labels two A-team "Emerging/Rising Stars" Asia Cups as "T20";
+# those are grouped with T20Is, not with the IPL.
+b["fmt"] = np.where(b.match_id.map(mi.comp_name).str.startswith("IPL"), "IPL", "T20I")
 
 def feats(inn, runs, wk, legal, target, btot):
     bl = np.maximum(btot - legal, 0)
@@ -92,8 +94,7 @@ print("pressure threshold LI", thr, "share", b.pressure.mean())
 # --- opposition strength weight
 FULL = {"Afghanistan","Australia","Bangladesh","England","India","Ireland","New Zealand","Pakistan","South Africa","Sri Lanka","West Indies","Zimbabwe"}
 tn = pd.read_csv(f"{D}/teams.csv").drop_duplicates("team_id").set_index("team_id").team_name
-def strong(tid): n = tn.get(tid, ""); return n in FULL or b.fmt.iloc[0] == "x"
-ipl_ids = set(b.loc[b.fmt == "T20", "batting_team_id"])
+ipl_ids = set(b.loc[b.fmt == "IPL", "batting_team_id"])
 def w_of(tid): return 1.0 if (tn.get(tid, "") in FULL or tid in ipl_ids) else 0.6
 wmap = {t: w_of(t) for t in pd.unique(np.r_[b.batting_team_id, b.bowling_team_id])}
 b["w_bat"] = b.bowling_team_id.map(wmap); b["w_bowl"] = b.batting_team_id.map(wmap)
@@ -153,8 +154,8 @@ def rating(g, ids, w=None, wp=W_P):
     p = g[g.P].groupby("id")[["v", "n"]].sum().reindex(ids).fillna(0); n = g[~g.P].groupby("id")[["v", "n"]].sum().reindex(ids).fillna(0)
     P_ = p.v / (p.n + K_P) * 100; N_ = n.v / (n.n + K_N) * 100
     return wp * P_ + (1 - wp) * N_, P_, N_
-def eligible(g, src):
-    p = g[g.P].groupby("id"); ok = set(p.raw.sum()[lambda s: s >= 150].index) & set(p.match_id.nunique()[lambda s: s >= 15].index)
+def eligible(g, src, min_balls=150, min_matches=15):
+    p = g[g.P].groupby("id"); ok = set(p.raw.sum()[lambda s: s >= min_balls].index) & set(p.match_id.nunique()[lambda s: s >= min_matches].index)
     last = src.groupby("id").date.max(); return sorted(ok & set(last[last >= "2025-01-01"].index))
 
 def validate(g):
@@ -172,8 +173,8 @@ def temporal(g, src):
     ids = pb[pb.raw >= 75].index.intersection(pa[pa >= 75].index); y = pb.rvraw.reindex(ids) / pb.raw.reindex(ids)
     return {"n_players": len(ids), "blend": round(float(rating(A, ids)[0].corr(y, method="spearman")), 3), "pressure_only": round(float(rating(A, ids, wp=1)[0].corr(y, method="spearman")), 3)}
 
-def analyse(kind):
-    src = BB if kind == "bat" else BW; g = agg(src); el = eligible(g, src)
+def analyse(kind, min_balls=150, min_matches=15, check=True):
+    src = BB if kind == "bat" else BW; g = agg(src); el = eligible(g, src, min_balls, min_matches)
     sc, P_, N_ = rating(g, el)
     R = pd.DataFrame({"name": names.reindex(el), "rating": sc, "pressure_rv100": P_, "normal_rv100": N_}, index=el)
     cnt = pd.Series(0.0, index=el); ranks = []
@@ -200,13 +201,13 @@ def analyse(kind):
     R["p_inns"] = P.groupby("id").match_id.nunique().reindex(el)
     R["p_wpa_total"] = P.groupby("id").wpa_.sum().reindex(el) * 100
     R["pos_inn%"] = (P.groupby(["id", "match_id"]).rv.sum() > 0).groupby(level=0).mean().reindex(el) * 100
-    ph = P.groupby(["id", "phase"]).size().unstack(fill_value=0); ph = ph.div(ph.sum(1), axis=0) * 100
+    ph = P.groupby(["id", "phase"]).size().unstack(fill_value=0); ph = ph.div(ph.sum(axis=1), axis=0) * 100
     for c_ in ["PP", "Mid", "Death"]: R["p_" + c_ + "%"] = ph[c_].reindex(el)
-    R["ipl_p_balls"] = P[P.fmt == "T20"].groupby("id").n.sum().reindex(el).fillna(0)
+    R["ipl_p_balls"] = P[P.fmt == "IPL"].groupby("id").n.sum().reindex(el).fillna(0)
     R["ipl2026_team"] = ipl26.reindex(el).fillna("-").values; R["country"] = nat.reindex(el).fillna("-").values
     R["last_match"] = src.groupby("id").date.max().reindex(el).dt.date
     R = R.sort_values("rating", ascending=False); R.insert(0, "rank", range(1, len(R) + 1))
-    return R, validate(g), temporal(g, src)
+    return (R, validate(g), temporal(g, src)) if check else R
 
 SENS = {q: prep(q) for q in [0.70, 0.80]}
 BB, BW, WKC = prep(0.75)
@@ -225,16 +226,25 @@ sv = b.groupby("pressure").agg(balls=("LI", "size"), mean_LI=("LI", "mean"), rpb
 sv.to_csv(f"{OUT}/pressure_validation.csv"); print(sv)
 b.groupby(["innings", "phase"]).pressure.mean().unstack().to_csv(f"{OUT}/pressure_by_phase.csv")
 b[["LI", "pressure", "innings", "legal_before"]].sample(20000, random_state=1).to_csv(f"{OUT}/li_sample.csv", index=False)
-# ---- role detail for squad-fit analysis: death-over pressure numbers
-dP = BW[BW.P & (BW.phase == "Death")].groupby("id"); F["death_p_balls"] = dP.n.sum().reindex(F.index).fillna(0); F["death_p_econ"] = dP.bowl_runs.sum().reindex(F.index) / F.death_p_balls.clip(lower=1) * 6
-F["death_p_wkts"] = dP.bowl_wk.sum().reindex(F.index).fillna(0)
-ppP = BW[BW.P & (BW.phase == "PP")].groupby("id"); F["pp_p_balls"] = ppP.n.sum().reindex(F.index).fillna(0); F["pp_p_econ"] = ppP.bowl_runs.sum().reindex(F.index) / F.pp_p_balls.clip(lower=1) * 6
-dB = BB[BB.P & (BB.phase == "Death")].groupby("id"); E["death_p_balls"] = dB.size().reindex(E.index).fillna(0); E["death_p_sr"] = dB.runs.sum().reindex(E.index) / E.death_p_balls.clip(lower=1) * 100
-cB = BB[BB.P & (BB.innings == 2)].groupby("id"); E["chase_p_balls"] = cB.size().reindex(E.index).fillna(0); E["chase_p_sr"] = cB.runs.sum().reindex(E.index) / E.chase_p_balls.clip(lower=1) * 100
-E["chase_p_avg"] = cB.runs.sum().reindex(E.index) / cB.bat_out.sum().reindex(E.index).clip(lower=1)
+# ---- role detail for squad-fit analysis: death-over, powerplay and chase pressure numbers
+def roles(E, F):
+    dP = BW[BW.P & (BW.phase == "Death")].groupby("id"); F["death_p_balls"] = dP.n.sum().reindex(F.index).fillna(0); F["death_p_econ"] = dP.bowl_runs.sum().reindex(F.index) / F.death_p_balls.clip(lower=1) * 6
+    F["death_p_wkts"] = dP.bowl_wk.sum().reindex(F.index).fillna(0)
+    ppP = BW[BW.P & (BW.phase == "PP")].groupby("id"); F["pp_p_balls"] = ppP.n.sum().reindex(F.index).fillna(0); F["pp_p_econ"] = ppP.bowl_runs.sum().reindex(F.index) / F.pp_p_balls.clip(lower=1) * 6
+    dB = BB[BB.P & (BB.phase == "Death")].groupby("id"); E["death_p_balls"] = dB.size().reindex(E.index).fillna(0); E["death_p_sr"] = dB.runs.sum().reindex(E.index) / E.death_p_balls.clip(lower=1) * 100
+    cB = BB[BB.P & (BB.innings == 2)].groupby("id"); E["chase_p_balls"] = cB.size().reindex(E.index).fillna(0); E["chase_p_sr"] = cB.runs.sum().reindex(E.index) / E.chase_p_balls.clip(lower=1) * 100
+    E["chase_p_avg"] = cB.runs.sum().reindex(E.index) / cB.bat_out.sum().reindex(E.index).clip(lower=1)
+roles(E, F)
 E.to_csv(f"{OUT}/batters_ranked.csv"); F.to_csv(f"{OUT}/bowlers_ranked.csv")
 
-
-
-
-# RR squad members not eligible (too few pressure balls) - list squad
+# ---- auction watchlist: players below the ranking threshold (60-149 pressure balls, 8+ matches).
+# Same rating, same shrinkage. These players are NOT in the official ranking; "would_rank" is where
+# their rating would sit in the main list. Used only for the auction section.
+WE = analyse("bat", 60, 8, check=False); WF = analyse("bowl", 60, 8, check=False); roles(WE, WF)
+ipl_any = set(mp[mp.comp_name.str.contains("IPL")].player_id)
+for W, M_, fn in [(WE, E, "auction_watchlist_batters.csv"), (WF, F, "auction_watchlist_bowlers.csv")]:
+    W = W[~W.index.isin(M_.index)].copy()
+    W["would_rank"] = [int((M_.rating > r).sum()) + 1 for r in W.rating]
+    W["ever_in_ipl_squad"] = W.index.isin(ipl_any)
+    W = W.drop(columns=["rank", "rank_cut30", "rank_cut20"]); W.insert(0, "watch_rank", range(1, len(W) + 1))
+    W.to_csv(f"{OUT}/{fn}")
