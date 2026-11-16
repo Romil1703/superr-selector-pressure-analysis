@@ -562,18 +562,6 @@
    "10.2 (49)",
    "6.7 (172)",
    "56%"
-  ],
-  [
-   "Fazalhaq Farooqi",
-   "LA medium",
-   "Afghanistan",
-   "47",
-   "241",
-   "+10.9",
-   "7.27 / 8.57",
-   "8.2 (54)",
-   "7.0 (175)",
-   "64%"
   ]
  ],
  "tg_spin": [
@@ -600,18 +588,6 @@
    "4.8 (20)",
    "11.5 (11)",
    "56%"
-  ],
-  [
-   "Liam Dawson",
-   "Left-arm spin",
-   "England",
-   "(23)",
-   "70",
-   "+6.3",
-   "6.69 / 8.15",
-   "7.5 (12)",
-   "7.5 (31)",
-   "42%"
   ]
  ],
  "tg_bat": [
@@ -666,19 +642,108 @@
    "167 (24)",
    "68.0",
    "66%"
+  ]
+ ],
+ "ten": [
+  [
+   "1",
+   "Taskin Ahmed",
+   "Fast bowler",
+   "Bangladesh",
+   "Tight and death overs",
+   "18 bowl",
+   "+7.2",
+   "+7.4"
   ],
   [
-   "Bhanuka Rajapaksa",
-   "LHB",
-   "Sri Lanka",
-   "71",
-   "150",
-   "+10.7",
-   "150.0",
-   "45.0",
-   "203 (29)",
-   "31.5",
-   "64%"
+   "2",
+   "Mujeeb Ur Rahman",
+   "Off-spinner",
+   "Afghanistan",
+   "Powerplay overs",
+   "7 bowl",
+   "+7.5",
+   "+14.5"
+  ],
+  [
+   "3",
+   "Daryl Mitchell",
+   "Middle-order batter",
+   "New Zealand",
+   "Finishing chases",
+   "26 bat",
+   "+11.1",
+   "+8.0"
+  ],
+  [
+   "4",
+   "Hasan Mahmud",
+   "Fast bowler",
+   "Bangladesh",
+   "Tight and death overs",
+   "(29) bowl",
+   "+9.1",
+   "+3.9"
+  ],
+  [
+   "5",
+   "Josh Little",
+   "Left-arm fast bowler",
+   "Ireland",
+   "Pace variety",
+   "(23) bowl",
+   "+9.0",
+   "+5.3"
+  ],
+  [
+   "6",
+   "Mark Chapman",
+   "Middle-order batter",
+   "New Zealand",
+   "Death-overs hitting",
+   "34 bat",
+   "+8.3",
+   "+6.7"
+  ],
+  [
+   "7",
+   "Mark Adair",
+   "Seam bowler",
+   "Ireland",
+   "Powerplay overs",
+   "23 bowl",
+   "+8.4",
+   "+4.5"
+  ],
+  [
+   "8",
+   "Sikandar Raza",
+   "Spin all-rounder",
+   "Zimbabwe",
+   "Middle overs, with bat and ball",
+   "22 bowl",
+   "+5.1",
+   "+6.0"
+  ],
+  [
+   "9",
+   "George Dockrell",
+   "Middle-order batter",
+   "Ireland",
+   "Finishing (base-price punt)",
+   "(31) bat",
+   "+15.5",
+   "+7.1"
+  ],
+  [
+   "10",
+   "Towhid Hridoy",
+   "Middle-order batter",
+   "Bangladesh",
+   "Steadying a chase",
+   "46 bat",
+   "+9.7",
+   "+4.2"
   ]
  ],
  "meta": {

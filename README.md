@@ -57,7 +57,7 @@ npm install docx && node code/build_report.js out Methodology_Report.docx
 
 - Fixed the opposition weighting. The data pack labels two A-team tournaments (Emerging Teams Asia Cup 2024, Asia Cup Rising Stars 2025) with the same format code as the IPL, and the earlier code treated every team in them as an IPL side. Balls against UAE, Oman, Hong Kong and the A teams were getting full weight instead of 0.6, and those matches were being compared with IPL averages. They are now grouped with T20Is, as the report always described. This moved the bowling top 10 (Narine up to 2nd, Hazlewood to 6th) and swapped Brook and Buttler at 9 and 10 in the batting list.
 - Pakistan players are now left out of the ranked lists and the watchlist, because an IPL franchise cannot sign them. Their deliveries still count towards every average. This removes Mohammad Nawaz and Abrar Ahmed from the top of the bowling list; Hasaranga and Bhuvneshwar Kumar take 9th and 10th.
-- Added the auction watchlist and rewrote the auction section around lower-cost players RR could realistically sign.
+- Added the auction watchlist and rewrote the auction section as ten lower-cost players, in priority order, that RR could realistically buy.
 - The report is now built by code from the results files.
 
 ## Limits

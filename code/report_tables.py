@@ -35,9 +35,19 @@ def bowl_row(name, show=None):
 def bat_row(name):
     r, rk = pick(E, WE, name)
     return [name, r.hand, r.country, rk, f"{r.p_balls:.0f}", s(r.pressure_rv100), f"{r.p_sr:.1f}", f"{r.p_avg:.1f}", f"{r.death_p_sr:.0f} ({r.death_p_balls:.0f})", f"{r.chase_p_avg:.1f}", pct(r["pos_inn%"])]
-T["tg_pace"] = [bowl_row(n, sh) for n, sh in [("Taskin Ahmed", None), ("Hasan Mahmud", None), ("Joshua Little", "Josh Little"), ("Mark Adair", None), ("FazalHaq Farooqi", "Fazalhaq Farooqi")]]
-T["tg_spin"] = [bowl_row(n) for n in ["Mujeeb Ur Rahman", "Sikandar Raza", "Liam Dawson"]]
-T["tg_bat"] = [bat_row(n) for n in ["Daryl Mitchell", "Mark Chapman", "George Dockrell", "Towhid Hridoy", "Bhanuka Rajapaksa"]]
+T["tg_pace"] = [bowl_row(n, sh) for n, sh in [("Taskin Ahmed", None), ("Hasan Mahmud", None), ("Joshua Little", "Josh Little"), ("Mark Adair", None)]]
+T["tg_spin"] = [bowl_row(n) for n in ["Mujeeb Ur Rahman", "Sikandar Raza"]]
+T["tg_bat"] = [bat_row(n) for n in ["Daryl Mitchell", "Mark Chapman", "George Dockrell", "Towhid Hridoy"]]
+# the ten auction picks, in the order I would go for them
+TEN = [("Taskin Ahmed", "bowl", "Fast bowler", "Tight and death overs"), ("Mujeeb Ur Rahman", "bowl", "Off-spinner", "Powerplay overs"), ("Daryl Mitchell", "bat", "Middle-order batter", "Finishing chases"),
+       ("Hasan Mahmud", "bowl", "Fast bowler", "Tight and death overs"), ("Joshua Little", "bowl", "Left-arm fast bowler", "Pace variety"), ("Mark Chapman", "bat", "Middle-order batter", "Death-overs hitting"),
+       ("Mark Adair", "bowl", "Seam bowler", "Powerplay overs"), ("Sikandar Raza", "bowl", "Spin all-rounder", "Middle overs, with bat and ball"), ("George Dockrell", "bat", "Middle-order batter", "Finishing (base-price punt)"),
+       ("Towhid Hridoy", "bat", "Middle-order batter", "Steadying a chase")]
+T["ten"] = []
+for k, (n, kind, role, job) in enumerate(TEN):
+    r, rk = pick(F, WF, n) if kind == "bowl" else pick(E, WE, n)
+    T["ten"].append([str(k + 1), n.replace("Joshua", "Josh"), role, r.country, job, rk + (" bowl" if kind == "bowl" else " bat"), s(r.pressure_rv100), s(r.rating)])
+    assert r.ipl2026_team == "-" and not str(r.country).startswith("Pakistan"), n
 T["meta"] = M
 # facts quoted in the text
 ex = {}
