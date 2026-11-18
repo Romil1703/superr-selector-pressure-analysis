@@ -44,13 +44,13 @@ def bat_row(name):
 # ---- the ten auction picks. Every one is in the IPL 2027 pool: either in no IPL 2026 squad, or released on
 # 17 November 2026 (ipl2027_released_players.json). RR has 6 slots, 3 of them overseas, so the list is split.
 REL = json.load(open(sys.argv[2])) if len(sys.argv) > 2 else {}
-TEN = [("Taskin Ahmed", "bowl", "Fast bowler", "Death overs", "Never in the IPL"),
-       ("Blessing Muzarabani", "bowl", "Fast bowler", "New ball and middle overs", "\u20B975 lakh (KKR, 2026)"),
+TEN = [("Blessing Muzarabani", "bowl", "Fast bowler", "New ball and middle overs", "\u20B975 lakh (KKR, 2026)"),
        ("Daryl Mitchell", "bat", "Middle-order batter", "Finishing chases", "Not in an IPL 2026 squad"),
-       ("Joshua Little", "bowl", "Left-arm fast bowler", "Death overs if Taskin is blocked", "Played for GT, 2023\u201324"),
+       ("Joshua Little", "bowl", "Left-arm fast bowler", "Death overs", "Played for GT, 2023\u201324"),
+       ("Gerald Coetzee", "bowl", "Fast bowler", "Death overs (second option)", "\u20B92 crore replacement (SRH, 2026)"),
        ("Mark Chapman", "bat", "Middle-order batter", "Back-up finisher", "Never in an IPL squad"),
+       ("Bevon Jacobs", "bat", "Middle-order batter", "Young finisher to develop", "\u20B930 lakh (MI, 2025)"),
        ("Kamindu Mendis", "bat", "Batting all-rounder", "Late-overs hitting, part-time spin", "\u20B975 lakh (SRH, 2026)"),
-       ("Mujeeb Ur Rahman", "bowl", "Off-spinner", "Spin cover", "Unsold, 2026 auction"),
        ("Akash Madhwal", "bowl", "Seam bowler", "Back-up Indian seamer", "Released by CSK"),
        ("Abishek Porel", "bat", "Wicketkeeper-batter", "Back-up keeper", "Released by DC"),
        ("M Shahrukh Khan", "bat", "Middle-order hitter", "Indian finisher", "Released by GT")]
@@ -60,14 +60,14 @@ T["ten"] = []
 for k, (n, kind, role, job, deal) in enumerate(TEN):
     r, rk = pick(F, WF, n) if kind == "bowl" else pick(E, WE, n)
     assert r.ipl2026_team == "-" or n in REL or SHOW.get(n, n) in REL, f"{n} is not in the 2027 pool"
-    assert not str(r.country).startswith("Pakistan"), n
+    assert not str(r.country).startswith(("Pakistan", "Bangladesh")), n
     T["ten"].append([str(k + 1), SHOW.get(n, n), role, ctry(r.country), job, deal, rk + (" bowl" if kind == "bowl" else " bat"), s(r.pressure_rv100), s(r.rating)])
 def bowl_ev(n):
     x = bowl_row(n, SHOW.get(n)); x[2] = ctry(x[2]); return x
 def bat_ev(n):
     x = bat_row(n); x[0] = SHOW.get(n, n); x[2] = ctry(x[2]); return x
-T["ev_bowl"] = [bowl_ev(n) for n in ["Taskin Ahmed", "Blessing Muzarabani", "Joshua Little", "Mujeeb Ur Rahman", "Akash Madhwal"]]
-T["ev_bat"] = [bat_ev(n) for n in ["Daryl Mitchell", "Mark Chapman", "Kamindu Mendis", "Abishek Porel", "M Shahrukh Khan"]]
+T["ev_bowl"] = [bowl_ev(n) for n in ["Blessing Muzarabani", "Joshua Little", "Gerald Coetzee", "Akash Madhwal"]]
+T["ev_bat"] = [bat_ev(n) for n in ["Daryl Mitchell", "Mark Chapman", "Bevon Jacobs", "Kamindu Mendis", "Abishek Porel", "M Shahrukh Khan"]]
 sh = F[F.name == "Mohammed Shami"].iloc[0]
 T["shami"] = {"rank": int(sh["rank"]), "p_balls": int(sh.p_balls), "pp_balls": int(sh.pp_p_balls), "pp_econ": round(float(sh.pp_p_econ), 1),
               "death_balls": int(sh.death_p_balls), "death_econ": round(float(sh.death_p_econ), 1), "pressure": s(sh.pressure_rv100), "normal": s(sh.normal_rv100)}

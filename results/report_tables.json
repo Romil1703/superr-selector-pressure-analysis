@@ -38,17 +38,17 @@
   [
    "8",
    "Cameron Green",
-   "Mahedi Hasan"
+   "Wanindu Hasaranga"
   ],
   [
    "9",
    "Harry Brook",
-   "Wanindu Hasaranga"
+   "Bhuvneshwar Kumar"
   ],
   [
    "10",
    "Jos Buttler",
-   "Bhuvneshwar Kumar"
+   "Blessing Muzarabani"
   ]
  ],
  "press": [
@@ -200,7 +200,7 @@
    "34.2",
    "61%",
    "59%",
-   "4–26",
+   "4–25",
    "–"
   ],
   [
@@ -232,7 +232,7 @@
    "42.5",
    "52%",
    "41%",
-   "4–37",
+   "4–36",
    "–"
   ],
   [
@@ -265,8 +265,8 @@
    "7.91",
    "35.3",
    "61%",
-   "86%",
-   "1–12",
+   "88%",
+   "1–11",
    "DC"
   ],
   [
@@ -281,7 +281,7 @@
    "6.83",
    "38.6",
    "69%",
-   "90%",
+   "92%",
    "1–10",
    "KKR"
   ],
@@ -297,8 +297,8 @@
    "7.25",
    "34.4",
    "64%",
-   "86%",
-   "1–12",
+   "88%",
+   "1–11",
    "GT"
   ],
   [
@@ -313,8 +313,8 @@
    "7.34",
    "44.7",
    "63%",
-   "77%",
-   "1–17",
+   "79%",
+   "1–15",
    "MI"
   ],
   [
@@ -329,8 +329,8 @@
    "8.17",
    "40.1",
    "63%",
-   "74%",
-   "2–16",
+   "76%",
+   "2–15",
    "KKR"
   ],
   [
@@ -345,8 +345,8 @@
    "8.49",
    "47.7",
    "63%",
-   "62%",
-   "2–26",
+   "64%",
+   "2–24",
    "RCB"
   ],
   [
@@ -361,28 +361,12 @@
    "6.93",
    "39.8",
    "58%",
-   "59%",
-   "2–24",
+   "62%",
+   "2–22",
    "–"
   ],
   [
    "8",
-   "Mahedi Hasan",
-   "+14.1",
-   "+13.9",
-   "+14.2",
-   "227",
-   "14",
-   "6.53",
-   "7.22",
-   "44.5",
-   "67%",
-   "55%",
-   "3–24",
-   "–"
-  ],
-  [
-   "9",
    "Wanindu Hasaranga",
    "+13.2",
    "+9.1",
@@ -393,12 +377,12 @@
    "7.78",
    "33.0",
    "51%",
-   "50%",
-   "4–23",
+   "56%",
+   "4–21",
    "LSG"
   ],
   [
-   "10",
+   "9",
    "Bhuvneshwar Kumar",
    "+11.0",
    "+1.0",
@@ -409,9 +393,25 @@
    "8.26",
    "42.1",
    "57%",
-   "38%",
-   "4–35",
+   "42%",
+   "4–32",
    "RCB"
+  ],
+  [
+   "10",
+   "Blessing Muzarabani",
+   "+10.4",
+   "+8.3",
+   "+12.6",
+   "164",
+   "11",
+   "7.39",
+   "7.56",
+   "47.6",
+   "62%",
+   "35%",
+   "5–36",
+   "KKR"
   ]
  ],
  "rrbat": [
@@ -445,14 +445,14 @@
   ],
   [
    "Dhruv Jurel",
-   "53",
+   "52",
    "−3.6",
    "+9.8",
    "138.8"
   ],
   [
    "Riyan Parag",
-   "56",
+   "55",
    "−4.0",
    "+6.8",
    "143.8"
@@ -461,7 +461,7 @@
  "rrbowl": [
   [
    "Mohammed Shami",
-   "16",
+   "15",
    "+0.3",
    "+16.4",
    "8.55",
@@ -469,7 +469,7 @@
   ],
   [
    "Ravi Bishnoi",
-   "39",
+   "36",
    "−4.3",
    "+6.0",
    "8.39",
@@ -477,7 +477,7 @@
   ],
   [
    "Jofra Archer",
-   "45",
+   "42",
    "−4.0",
    "+4.0",
    "9.40",
@@ -485,7 +485,7 @@
   ],
   [
    "Ravindra Jadeja",
-   "51",
+   "48",
    "+7.2",
    "−8.1",
    "7.18",
@@ -493,7 +493,7 @@
   ],
   [
    "Sandeep Sharma",
-   "60",
+   "56",
    "−6.5",
    "+2.5",
    "9.01",
@@ -503,28 +503,17 @@
  "ten": [
   [
    "1",
-   "Taskin Ahmed",
-   "Fast bowler",
-   "Bangladesh",
-   "Death overs",
-   "Never in the IPL",
-   "18 bowl",
-   "+7.2",
-   "+7.4"
-  ],
-  [
-   "2",
    "Blessing Muzarabani",
    "Fast bowler",
    "Zimbabwe",
    "New ball and middle overs",
    "₹75 lakh (KKR, 2026)",
-   "11 bowl",
+   "10 bowl",
    "+8.3",
    "+10.4"
   ],
   [
-   "3",
+   "2",
    "Daryl Mitchell",
    "Middle-order batter",
    "New Zealand",
@@ -535,15 +524,26 @@
    "+8.0"
   ],
   [
-   "4",
+   "3",
    "Josh Little",
    "Left-arm fast bowler",
    "Ireland",
-   "Death overs if Taskin is blocked",
+   "Death overs",
    "Played for GT, 2023–24",
-   "(23) bowl",
+   "(20) bowl",
    "+9.0",
    "+5.3"
+  ],
+  [
+   "4",
+   "Gerald Coetzee",
+   "Fast bowler",
+   "South Africa",
+   "Death overs (second option)",
+   "₹2 crore replacement (SRH, 2026)",
+   "(40) bowl",
+   "+7.2",
+   "+0.3"
   ],
   [
    "5",
@@ -558,25 +558,25 @@
   ],
   [
    "6",
+   "Bevon Jacobs",
+   "Middle-order batter",
+   "New Zealand",
+   "Young finisher to develop",
+   "₹30 lakh (MI, 2025)",
+   "(38) bat",
+   "+5.7",
+   "+5.7"
+  ],
+  [
+   "7",
    "Kamindu Mendis",
    "Batting all-rounder",
    "Sri Lanka",
    "Late-overs hitting, part-time spin",
    "₹75 lakh (SRH, 2026)",
-   "(59) bat",
+   "(58) bat",
    "+10.1",
    "+0.7"
-  ],
-  [
-   "7",
-   "Mujeeb Ur Rahman",
-   "Off-spinner",
-   "Afghanistan",
-   "Spin cover",
-   "Unsold, 2026 auction",
-   "7 bowl",
-   "+7.5",
-   "+14.5"
   ],
   [
    "8",
@@ -585,7 +585,7 @@
    "India",
    "Back-up Indian seamer",
    "Released by CSK",
-   "(37) bowl",
+   "(34) bowl",
    "+6.2",
    "+2.1"
   ],
@@ -596,7 +596,7 @@
    "India",
    "Back-up keeper",
    "Released by DC",
-   "(62) bat",
+   "(61) bat",
    "+1.1",
    "−0.2"
   ],
@@ -607,29 +607,17 @@
    "India",
    "Indian finisher",
    "Released by GT",
-   "(71) bat",
+   "(68) bat",
    "+2.1",
    "−4.1"
   ]
  ],
  "ev_bowl": [
   [
-   "Taskin Ahmed",
-   "RA fast",
-   "Bangladesh",
-   "18",
-   "233",
-   "+7.2",
-   "6.98 / 8.29",
-   "7.5 (63)",
-   "6.4 (123)",
-   "56%"
-  ],
-  [
    "Blessing Muzarabani",
    "RA fast-medium",
    "Zimbabwe",
-   "11",
+   "10",
    "164",
    "+8.3",
    "7.39 / 7.56",
@@ -641,7 +629,7 @@
    "Josh Little",
    "LA fast",
    "Ireland",
-   "(23)",
+   "(20)",
    "134",
    "+9.0",
    "7.66 / 8.28",
@@ -650,22 +638,22 @@
    "55%"
   ],
   [
-   "Mujeeb Ur Rahman",
-   "Off-spin",
-   "Afghanistan",
-   "7",
-   "251",
-   "+7.5",
-   "7.27 / 6.93",
-   "7.6 (23)",
-   "7.7 (153)",
-   "58%"
+   "Gerald Coetzee",
+   "RA fast",
+   "South Africa",
+   "(40)",
+   "93",
+   "+7.2",
+   "7.74 / 9.99",
+   "5.8 (26)",
+   "9.5 (45)",
+   "57%"
   ],
   [
    "Akash Madhwal",
    "RA medium-fast",
    "India",
-   "(37)",
+   "(34)",
    "40",
    "+6.2",
    "7.95 / 10.55",
@@ -702,10 +690,23 @@
    "56%"
   ],
   [
+   "Bevon Jacobs",
+   "RHB",
+   "New Zealand",
+   "(38)",
+   "60",
+   "+5.7",
+   "140.0",
+   "84.0",
+   "300 (3)",
+   "37.0",
+   "71%"
+  ],
+  [
    "Kamindu Mendis",
    "LHB",
    "Sri Lanka",
-   "(59)",
+   "(58)",
    "131",
    "+10.1",
    "137.4",
@@ -718,7 +719,7 @@
    "Abishek Porel",
    "LHB",
    "India",
-   "(62)",
+   "(61)",
    "105",
    "+1.1",
    "153.3",
@@ -731,7 +732,7 @@
    "Shahrukh Khan",
    "RHB",
    "India",
-   "(71)",
+   "(68)",
    "77",
    "+2.1",
    "141.6",
@@ -742,7 +743,7 @@
   ]
  ],
  "shami": {
-  "rank": 16,
+  "rank": 15,
   "p_balls": 289,
   "pp_balls": 242,
   "pp_econ": 8.0,
@@ -752,19 +753,19 @@
   "normal": "+16.4"
  },
  "watch_n": {
-  "bat": 105,
-  "bowl": 116
+  "bat": 97,
+  "bowl": 109
  },
  "boult": "+16.5",
- "n_watch_in_ten": 5,
+ "n_watch_in_ten": 7,
  "meta": {
   "auc": 0.8025,
   "brier": 0.1804,
   "li_threshold": 1.354,
   "balls": 181002,
   "matches": 769,
-  "elig_bat": 82,
-  "elig_bowl": 86,
+  "elig_bat": 79,
+  "elig_bowl": 80,
   "wicket_cost_runs": {
    "pressure": 6.12,
    "normal": 8.95
@@ -814,17 +815,17 @@
    ]
   },
   "bowl": {
-   "top5_min_boot": 73.75,
+   "top5_min_boot": 76.0,
    "r8_10_boot": [
-    54.75,
-    50.25,
-    38.5
+    55.75,
+    42.5,
+    35.0
    ],
    "min_pos_inn": 50.90909090909091,
    "below50": []
   },
-  "spin_in_top10": 7,
+  "spin_in_top10": 6,
   "rr_bowl_below_avg_pressure": 3,
-  "rr_best_bowl_rank": 16
+  "rr_best_bowl_rank": 15
  }
 }

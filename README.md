@@ -22,9 +22,9 @@ My Round 1 entry for **SupeRR Selector Season 2** (Rajasthan Royals): which T20 
 | 5 | Heinrich Klaasen | Varun Chakravarthy |
 | 6 | Phil Salt | Josh Hazlewood |
 | 7 | Andre Russell | Mujeeb Ur Rahman |
-| 8 | Cameron Green | Mahedi Hasan |
-| 9 | Harry Brook | Wanindu Hasaranga |
-| 10 | Jos Buttler | Bhuvneshwar Kumar |
+| 8 | Cameron Green | Wanindu Hasaranga |
+| 9 | Harry Brook | Bhuvneshwar Kumar |
+| 10 | Jos Buttler | Blessing Muzarabani |
 
 ## What's here
 
@@ -35,7 +35,7 @@ My Round 1 entry for **SupeRR Selector Season 2** (Rajasthan Royals): which T20 
 | `code/charts.py` | Draws the figures |
 | `code/report_tables.py` | Builds every table in the report from the results files |
 | `code/build_report.js` | Writes the Word report from those tables and figures |
-| `results/batters_ranked.csv`, `results/bowlers_ranked.csv` | Ratings for every eligible batter (82) and bowler (86) |
+| `results/batters_ranked.csv`, `results/bowlers_ranked.csv` | Ratings for every eligible batter (79) and bowler (80) |
 | `code/ipl2027_released_players.json` | Official IPL 2027 release lists (17 Nov 2026), used to check the auction pool |
 | `results/auction_watchlist_*.csv` | Same rating for players with 40 to 149 pressure balls. Not part of the ranking; used only for the auction section |
 | `results/meta.json` | Model and validation figures |
@@ -56,6 +56,7 @@ npm install docx && node code/build_report.js out Methodology_Report.docx
 
 **18 Nov 2026**
 
+- Bangladesh players are now left out of the ranked lists and the watchlist, like Pakistan players, because their IPL eligibility is unclear. Mahedi Hasan leaves the bowling top 10; Blessing Muzarabani comes in at 10th.
 - Rebuilt the auction section on the official retention lists: RR has ₹27.05 crore for 6 places (3 overseas), with Shami and Siddharth traded in and Curran traded out. The ten picks are now seven overseas options and three Indian options, all in the auction pool and in the lower price bracket.
 - Lowered the watchlist floor to 40 pressure balls so Indian players with short IPL records can be rated. The main ranking is unchanged.
 

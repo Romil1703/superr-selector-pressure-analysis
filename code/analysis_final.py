@@ -157,9 +157,11 @@ def rating(g, ids, w=None, wp=W_P):
 def eligible(g, src, min_balls=150, min_matches=15):
     p = g[g.P].groupby("id"); ok = set(p.raw.sum()[lambda s: s >= min_balls].index) & set(p.match_id.nunique()[lambda s: s >= min_matches].index)
     last = src.groupby("id").date.max(); ok = ok & set(last[last >= "2025-01-01"].index)
-    # Pakistan players are left out of the lists: they have not played in the IPL since 2008, so an IPL
-    # franchise cannot sign them. Their balls still count towards every average and towards other players' numbers.
-    return sorted(i for i in ok if not str(nat.get(i, "")).startswith("Pakistan"))
+    # Pakistan and Bangladesh players are left out of the lists. Pakistan players have not played in the IPL
+    # since 2008, and Bangladesh players' eligibility is unclear after the BCCI made KKR release Mustafizur Rahman
+    # before IPL 2026, so an IPL franchise cannot plan around them. Their balls still count towards every average
+    # and towards other players' numbers.
+    return sorted(i for i in ok if not str(nat.get(i, "")).startswith(("Pakistan", "Bangladesh")))
 
 def validate(g):
     """Out-of-sample: which estimator built on half the matches best predicts raw pressure rv in the other half?"""

@@ -4,8 +4,8 @@
  "li_threshold": 1.354,
  "balls": 181002,
  "matches": 769,
- "elig_bat": 82,
- "elig_bowl": 86,
+ "elig_bat": 79,
+ "elig_bowl": 80,
  "wicket_cost_runs": {
   "pressure": 6.12,
   "normal": 8.95
