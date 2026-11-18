@@ -26,6 +26,27 @@ My Round 1 entry for **SupeRR Selector Season 2** (Rajasthan Royals): which T20 
 | 9 | Harry Brook | Bhuvneshwar Kumar |
 | 10 | Jos Buttler | Blessing Muzarabani |
 
+## Auction picks for Rajasthan Royals (IPL 2027)
+
+Built on the official retention lists of 17 November 2026: RR has ₹27.05 crore for 6 places, 3 of them overseas. Every player is in the auction pool and in the lower price bracket. Archer and Shami already cover the new ball, so the death overs and a finisher come first.
+
+| # | Player | Country | Job at RR | Last IPL deal |
+|:-:|---|---|---|---|
+| | **Overseas (3 places)** | | | |
+| 1 | Daryl Mitchell | New Zealand | Finishing chases | Not in an IPL 2026 squad |
+| 2 | Josh Little | Ireland | Death overs | Played for GT, 2023–24 |
+| 3 | Gerald Coetzee | South Africa | Death overs | ₹2 crore replacement (SRH, 2026) |
+| 4 | Mark Chapman | New Zealand | Back-up finisher | Never in an IPL squad |
+| 5 | Bevon Jacobs | New Zealand | Young finisher to develop | ₹30 lakh (MI, 2025) |
+| 6 | Kamindu Mendis | Sri Lanka | Late-overs hitting, part-time spin | ₹75 lakh (SRH, 2026) |
+| 7 | Blessing Muzarabani | Zimbabwe | New-ball cover for Archer and Shami | ₹75 lakh (KKR, 2026) |
+| | **Indian (3 places)** | | | |
+| 8 | Akash Madhwal | India | Back-up Indian seamer | Released by CSK |
+| 9 | Abishek Porel | India | Back-up keeper | Released by DC |
+| 10 | Shahrukh Khan | India | Indian finisher | Released by GT |
+
+First-choice six: Mitchell, Little and Coetzee (overseas), plus Madhwal, Porel and Shahrukh Khan (Indian). The evidence for each is in Section 8 of the report.
+
 ## What's here
 
 | Path | Contents |
@@ -56,6 +77,7 @@ npm install docx && node code/build_report.js out Methodology_Report.docx
 
 **18 Nov 2026**
 
+- Reordered the auction picks: Archer and Shami already cover the new ball, so death bowlers Little and Coetzee move up and Muzarabani becomes new-ball cover.
 - Bangladesh players are now left out of the ranked lists and the watchlist, like Pakistan players, because their IPL eligibility is unclear. Mahedi Hasan leaves the bowling top 10; Blessing Muzarabani comes in at 10th.
 - Rebuilt the auction section on the official retention lists: RR has ₹27.05 crore for 6 places (3 overseas), with Shami and Siddharth traded in and Curran traded out. The ten picks are now seven overseas options and three Indian options, all in the auction pool and in the lower price bracket.
 - Lowered the watchlist floor to 40 pressure balls so Indian players with short IPL records can be rated. The main ranking is unchanged.
