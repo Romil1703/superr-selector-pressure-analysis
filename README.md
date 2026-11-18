@@ -36,7 +36,8 @@ My Round 1 entry for **SupeRR Selector Season 2** (Rajasthan Royals): which T20 
 | `code/report_tables.py` | Builds every table in the report from the results files |
 | `code/build_report.js` | Writes the Word report from those tables and figures |
 | `results/batters_ranked.csv`, `results/bowlers_ranked.csv` | Ratings for every eligible batter (82) and bowler (86) |
-| `results/auction_watchlist_*.csv` | Same rating for players with 60 to 149 pressure balls. Not part of the ranking; used only for the auction section |
+| `code/ipl2027_released_players.json` | Official IPL 2027 release lists (17 Nov 2026), used to check the auction pool |
+| `results/auction_watchlist_*.csv` | Same rating for players with 40 to 149 pressure balls. Not part of the ranking; used only for the auction section |
 | `results/meta.json` | Model and validation figures |
 
 ## Running it
@@ -45,13 +46,18 @@ My Round 1 entry for **SupeRR Selector Season 2** (Rajasthan Royals): which T20 
 pip install pandas scikit-learn matplotlib
 python3 code/analysis_final.py <data_dir> out
 python3 code/charts.py out
-python3 code/report_tables.py out
+python3 code/report_tables.py out code/ipl2027_released_players.json
 npm install docx && node code/build_report.js out Methodology_Report.docx
 ```
 
 `<data_dir>` is the folder holding the six CSV files from the competition data pack. **The data pack is not included here**; it belongs to Rajasthan Royals and is available to registered participants only. The run takes about a minute and uses fixed random seeds.
 
 ## Change log
+
+**18 Nov 2026**
+
+- Rebuilt the auction section on the official retention lists: RR has ₹27.05 crore for 6 places (3 overseas), with Shami and Siddharth traded in and Curran traded out. The ten picks are now seven overseas options and three Indian options, all in the auction pool and in the lower price bracket.
+- Lowered the watchlist floor to 40 pressure balls so Indian players with short IPL records can be rated. The main ranking is unchanged.
 
 **16 Nov 2026**
 

@@ -1,4 +1,5 @@
-"""Builds the tables used in the report from the ranked CSVs. Usage: python3 report_tables.py <out_dir>"""
+"""Builds the tables used in the report from the ranked CSVs.
+Usage: python3 report_tables.py <out_dir> <ipl2027_released_players.json>"""
 import sys, json, pandas as pd
 O = sys.argv[1]
 E = pd.read_csv(f"{O}/batters_ranked.csv", index_col=0); F = pd.read_csv(f"{O}/bowlers_ranked.csv", index_col=0)
@@ -22,7 +23,12 @@ T["bat10"] = [[str(r["rank"]), nm(r["name"]), s(r.rating), s(r.pressure_rv100), 
                pct(r["pos_inn%"]), pct(r["top10_boot%"]), rng(r), CODE[r.ipl2026_team]] for _, r in E.head(10).iterrows()]
 T["bowl10"] = [[str(r["rank"]), r["name"], s(r.rating), s(r.pressure_rv100), s(r.normal_rv100), f"{r.p_balls:.0f}", f"{r.p_wkts:.0f}", f"{r.p_econ:.2f}", f"{r.n_econ:.2f}", f"{r['p_dot%']:.1f}",
                 pct(r["pos_inn%"]), pct(r["top10_boot%"]), rng(r), CODE[r.ipl2026_team]] for _, r in F.head(10).iterrows()]
-rb = E[E.ipl2026_team == "Rajasthan Royals"]; rw = F[F.ipl2026_team == "Rajasthan Royals"]
+# RR's IPL 2027 squad after the official retention lists (17 November 2026): 17 retained, plus Mohammed Shami
+# and Manimaran Siddharth traded in. Sam Curran was traded to LSG; Hetmyer and eight others were released.
+RR27 = ["Riyan Parag", "Yashasvi Jaiswal", "Vaibhav Sooryavanshi", "Ravindra Jadeja", "Dhruv Jurel", "Jofra Archer", "Aman Rao Perala",
+        "Brijesh Sharma", "Nandre Burger", "Dasun Shanaka", "Donovan Ferreira", "Lhuan-dre Pretorius", "Ravi Bishnoi", "Sandeep Sharma",
+        "Shubham Dubey", "Sushant Mishra", "Yash Raj Punja", "Mohammed Shami", "Manimaran Siddharth"]
+rb = E[E.name.isin(RR27)]; rw = F[F.name.isin(RR27)]
 T["rrbat"] = [[r["name"], str(r["rank"]), s(r.pressure_rv100), s(r.normal_rv100), f"{r.p_sr:.1f}"] for _, r in rb.iterrows()]
 T["rrbowl"] = [[r["name"], str(r["rank"]), s(r.pressure_rv100), s(r.normal_rv100), f"{r.p_econ:.2f}", f"{r.death_p_econ:.1f} ({r.death_p_balls:.0f})"] for _, r in rw.iterrows()]
 def pick(main, watch, name):
@@ -35,19 +41,39 @@ def bowl_row(name, show=None):
 def bat_row(name):
     r, rk = pick(E, WE, name)
     return [name, r.hand, r.country, rk, f"{r.p_balls:.0f}", s(r.pressure_rv100), f"{r.p_sr:.1f}", f"{r.p_avg:.1f}", f"{r.death_p_sr:.0f} ({r.death_p_balls:.0f})", f"{r.chase_p_avg:.1f}", pct(r["pos_inn%"])]
-T["tg_pace"] = [bowl_row(n, sh) for n, sh in [("Taskin Ahmed", None), ("Hasan Mahmud", None), ("Joshua Little", "Josh Little"), ("Mark Adair", None)]]
-T["tg_spin"] = [bowl_row(n) for n in ["Mujeeb Ur Rahman", "Sikandar Raza"]]
-T["tg_bat"] = [bat_row(n) for n in ["Daryl Mitchell", "Mark Chapman", "George Dockrell", "Towhid Hridoy"]]
-# the ten auction picks, in the order I would go for them
-TEN = [("Taskin Ahmed", "bowl", "Fast bowler", "Tight and death overs"), ("Mujeeb Ur Rahman", "bowl", "Off-spinner", "Powerplay overs"), ("Daryl Mitchell", "bat", "Middle-order batter", "Finishing chases"),
-       ("Hasan Mahmud", "bowl", "Fast bowler", "Tight and death overs"), ("Joshua Little", "bowl", "Left-arm fast bowler", "Pace variety"), ("Mark Chapman", "bat", "Middle-order batter", "Death-overs hitting"),
-       ("Mark Adair", "bowl", "Seam bowler", "Powerplay overs"), ("Sikandar Raza", "bowl", "Spin all-rounder", "Middle overs, with bat and ball"), ("George Dockrell", "bat", "Middle-order batter", "Finishing (base-price punt)"),
-       ("Towhid Hridoy", "bat", "Middle-order batter", "Steadying a chase")]
+# ---- the ten auction picks. Every one is in the IPL 2027 pool: either in no IPL 2026 squad, or released on
+# 17 November 2026 (ipl2027_released_players.json). RR has 6 slots, 3 of them overseas, so the list is split.
+REL = json.load(open(sys.argv[2])) if len(sys.argv) > 2 else {}
+TEN = [("Taskin Ahmed", "bowl", "Fast bowler", "Death overs", "Never in the IPL"),
+       ("Blessing Muzarabani", "bowl", "Fast bowler", "New ball and middle overs", "\u20B975 lakh (KKR, 2026)"),
+       ("Daryl Mitchell", "bat", "Middle-order batter", "Finishing chases", "Not in an IPL 2026 squad"),
+       ("Joshua Little", "bowl", "Left-arm fast bowler", "Death overs if Taskin is blocked", "Played for GT, 2023\u201324"),
+       ("Mark Chapman", "bat", "Middle-order batter", "Back-up finisher", "Never in an IPL squad"),
+       ("Kamindu Mendis", "bat", "Batting all-rounder", "Late-overs hitting, part-time spin", "\u20B975 lakh (SRH, 2026)"),
+       ("Mujeeb Ur Rahman", "bowl", "Off-spinner", "Spin cover", "Unsold, 2026 auction"),
+       ("Akash Madhwal", "bowl", "Seam bowler", "Back-up Indian seamer", "Released by CSK"),
+       ("Abishek Porel", "bat", "Wicketkeeper-batter", "Back-up keeper", "Released by DC"),
+       ("M Shahrukh Khan", "bat", "Middle-order hitter", "Indian finisher", "Released by GT")]
+SHOW = {"Joshua Little": "Josh Little", "M Shahrukh Khan": "Shahrukh Khan"}
+ctry = lambda c: "India" if c in ("-", "India A") else c
 T["ten"] = []
-for k, (n, kind, role, job) in enumerate(TEN):
+for k, (n, kind, role, job, deal) in enumerate(TEN):
     r, rk = pick(F, WF, n) if kind == "bowl" else pick(E, WE, n)
-    T["ten"].append([str(k + 1), n.replace("Joshua", "Josh"), role, r.country, job, rk + (" bowl" if kind == "bowl" else " bat"), s(r.pressure_rv100), s(r.rating)])
-    assert r.ipl2026_team == "-" and not str(r.country).startswith("Pakistan"), n
+    assert r.ipl2026_team == "-" or n in REL or SHOW.get(n, n) in REL, f"{n} is not in the 2027 pool"
+    assert not str(r.country).startswith("Pakistan"), n
+    T["ten"].append([str(k + 1), SHOW.get(n, n), role, ctry(r.country), job, deal, rk + (" bowl" if kind == "bowl" else " bat"), s(r.pressure_rv100), s(r.rating)])
+def bowl_ev(n):
+    x = bowl_row(n, SHOW.get(n)); x[2] = ctry(x[2]); return x
+def bat_ev(n):
+    x = bat_row(n); x[0] = SHOW.get(n, n); x[2] = ctry(x[2]); return x
+T["ev_bowl"] = [bowl_ev(n) for n in ["Taskin Ahmed", "Blessing Muzarabani", "Joshua Little", "Mujeeb Ur Rahman", "Akash Madhwal"]]
+T["ev_bat"] = [bat_ev(n) for n in ["Daryl Mitchell", "Mark Chapman", "Kamindu Mendis", "Abishek Porel", "M Shahrukh Khan"]]
+sh = F[F.name == "Mohammed Shami"].iloc[0]
+T["shami"] = {"rank": int(sh["rank"]), "p_balls": int(sh.p_balls), "pp_balls": int(sh.pp_p_balls), "pp_econ": round(float(sh.pp_p_econ), 1),
+              "death_balls": int(sh.death_p_balls), "death_econ": round(float(sh.death_p_econ), 1), "pressure": s(sh.pressure_rv100), "normal": s(sh.normal_rv100)}
+T["watch_n"] = {"bat": len(WE), "bowl": len(WF)}
+bo = F[F.name == "Trent Boult"].iloc[0]; T["boult"] = s(bo.pressure_rv100)
+T["n_watch_in_ten"] = sum(x[6].startswith("(") for x in T["ten"])
 T["meta"] = M
 # facts quoted in the text
 ex = {}

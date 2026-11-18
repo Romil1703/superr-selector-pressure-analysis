@@ -240,10 +240,11 @@ def roles(E, F):
 roles(E, F)
 E.to_csv(f"{OUT}/batters_ranked.csv"); F.to_csv(f"{OUT}/bowlers_ranked.csv")
 
-# ---- auction watchlist: players below the ranking threshold (60-149 pressure balls, 8+ matches).
+# ---- auction watchlist: players below the ranking threshold (40-149 pressure balls, 5+ matches).
+# The floor is low so that Indian players with only a few IPL seasons can be rated at all.
 # Same rating, same shrinkage. These players are NOT in the official ranking; "would_rank" is where
 # their rating would sit in the main list. Used only for the auction section.
-WE = analyse("bat", 60, 8, check=False); WF = analyse("bowl", 60, 8, check=False); roles(WE, WF)
+WE = analyse("bat", 40, 5, check=False); WF = analyse("bowl", 40, 5, check=False); roles(WE, WF)
 ipl_any = set(mp[mp.comp_name.str.contains("IPL")].player_id)
 for W, M_, fn in [(WE, E, "auction_watchlist_batters.csv"), (WF, F, "auction_watchlist_bowlers.csv")]:
     W = W[~W.index.isin(M_.index)].copy()

@@ -430,13 +430,6 @@
    "169.5"
   ],
   [
-   "Shimron Hetmyer",
-   "39",
-   "+6.2",
-   "+4.2",
-   "148.7"
-  ],
-  [
    "Dasun Shanaka",
    "40",
    "+10.2",
@@ -463,16 +456,17 @@
    "−4.0",
    "+6.8",
    "143.8"
-  ],
-  [
-   "Sam Curran",
-   "75",
-   "+3.1",
-   "−12.8",
-   "131.2"
   ]
  ],
  "rrbowl": [
+  [
+   "Mohammed Shami",
+   "16",
+   "+0.3",
+   "+16.4",
+   "8.55",
+   "17.6 (17)"
+  ],
   [
    "Ravi Bishnoi",
    "39",
@@ -504,17 +498,121 @@
    "+2.5",
    "9.01",
    "12.4 (66)"
-  ],
-  [
-   "Sam Curran",
-   "83",
-   "−14.5",
-   "−12.6",
-   "9.89",
-   "9.5 (104)"
   ]
  ],
- "tg_pace": [
+ "ten": [
+  [
+   "1",
+   "Taskin Ahmed",
+   "Fast bowler",
+   "Bangladesh",
+   "Death overs",
+   "Never in the IPL",
+   "18 bowl",
+   "+7.2",
+   "+7.4"
+  ],
+  [
+   "2",
+   "Blessing Muzarabani",
+   "Fast bowler",
+   "Zimbabwe",
+   "New ball and middle overs",
+   "₹75 lakh (KKR, 2026)",
+   "11 bowl",
+   "+8.3",
+   "+10.4"
+  ],
+  [
+   "3",
+   "Daryl Mitchell",
+   "Middle-order batter",
+   "New Zealand",
+   "Finishing chases",
+   "Not in an IPL 2026 squad",
+   "26 bat",
+   "+11.1",
+   "+8.0"
+  ],
+  [
+   "4",
+   "Josh Little",
+   "Left-arm fast bowler",
+   "Ireland",
+   "Death overs if Taskin is blocked",
+   "Played for GT, 2023–24",
+   "(23) bowl",
+   "+9.0",
+   "+5.3"
+  ],
+  [
+   "5",
+   "Mark Chapman",
+   "Middle-order batter",
+   "New Zealand",
+   "Back-up finisher",
+   "Never in an IPL squad",
+   "34 bat",
+   "+8.3",
+   "+6.7"
+  ],
+  [
+   "6",
+   "Kamindu Mendis",
+   "Batting all-rounder",
+   "Sri Lanka",
+   "Late-overs hitting, part-time spin",
+   "₹75 lakh (SRH, 2026)",
+   "(59) bat",
+   "+10.1",
+   "+0.7"
+  ],
+  [
+   "7",
+   "Mujeeb Ur Rahman",
+   "Off-spinner",
+   "Afghanistan",
+   "Spin cover",
+   "Unsold, 2026 auction",
+   "7 bowl",
+   "+7.5",
+   "+14.5"
+  ],
+  [
+   "8",
+   "Akash Madhwal",
+   "Seam bowler",
+   "India",
+   "Back-up Indian seamer",
+   "Released by CSK",
+   "(37) bowl",
+   "+6.2",
+   "+2.1"
+  ],
+  [
+   "9",
+   "Abishek Porel",
+   "Wicketkeeper-batter",
+   "India",
+   "Back-up keeper",
+   "Released by DC",
+   "(62) bat",
+   "+1.1",
+   "−0.2"
+  ],
+  [
+   "10",
+   "Shahrukh Khan",
+   "Middle-order hitter",
+   "India",
+   "Indian finisher",
+   "Released by GT",
+   "(71) bat",
+   "+2.1",
+   "−4.1"
+  ]
+ ],
+ "ev_bowl": [
   [
    "Taskin Ahmed",
    "RA fast",
@@ -528,16 +626,16 @@
    "56%"
   ],
   [
-   "Hasan Mahmud",
-   "RA fast",
-   "Bangladesh",
-   "(29)",
-   "103",
-   "+9.1",
-   "6.76 / 8.17",
-   "6.2 (24)",
-   "7.3 (47)",
-   "71%"
+   "Blessing Muzarabani",
+   "RA fast-medium",
+   "Zimbabwe",
+   "11",
+   "164",
+   "+8.3",
+   "7.39 / 7.56",
+   "11.3 (41)",
+   "6.6 (98)",
+   "62%"
   ],
   [
    "Josh Little",
@@ -552,20 +650,6 @@
    "55%"
   ],
   [
-   "Mark Adair",
-   "RA fast-medium",
-   "Ireland",
-   "23",
-   "235",
-   "+8.4",
-   "7.46 / 9.18",
-   "10.2 (49)",
-   "6.7 (172)",
-   "56%"
-  ]
- ],
- "tg_spin": [
-  [
    "Mujeeb Ur Rahman",
    "Off-spin",
    "Afghanistan",
@@ -578,19 +662,19 @@
    "58%"
   ],
   [
-   "Sikandar Raza",
-   "Off-spin",
-   "Zimbabwe",
-   "22",
-   "265",
-   "+5.1",
-   "6.82 / 7.20",
-   "4.8 (20)",
-   "11.5 (11)",
-   "56%"
+   "Akash Madhwal",
+   "RA medium-fast",
+   "India",
+   "(37)",
+   "40",
+   "+6.2",
+   "7.95 / 10.55",
+   "15.3 (11)",
+   "4.1 (16)",
+   "44%"
   ]
  ],
- "tg_bat": [
+ "ev_bat": [
   [
    "Daryl Mitchell",
    "RHB",
@@ -618,134 +702,61 @@
    "56%"
   ],
   [
-   "George Dockrell",
-   "RHB",
-   "Ireland",
-   "(31)",
-   "94",
-   "+15.5",
-   "162.8",
-   "153.0",
-   "168 (28)",
-   "132.0",
-   "80%"
+   "Kamindu Mendis",
+   "LHB",
+   "Sri Lanka",
+   "(59)",
+   "131",
+   "+10.1",
+   "137.4",
+   "90.0",
+   "219 (36)",
+   "118.0",
+   "55%"
   ],
   [
-   "Towhid Hridoy",
+   "Abishek Porel",
+   "LHB",
+   "India",
+   "(62)",
+   "105",
+   "+1.1",
+   "153.3",
+   "26.8",
+   "188 (8)",
+   "32.0",
+   "38%"
+  ],
+  [
+   "Shahrukh Khan",
    "RHB",
-   "Bangladesh",
-   "46",
-   "207",
-   "+9.7",
-   "123.7",
-   "85.3",
-   "167 (24)",
-   "68.0",
-   "66%"
+   "India",
+   "(71)",
+   "77",
+   "+2.1",
+   "141.6",
+   "36.3",
+   "132 (41)",
+   "43.0",
+   "47%"
   ]
  ],
- "ten": [
-  [
-   "1",
-   "Taskin Ahmed",
-   "Fast bowler",
-   "Bangladesh",
-   "Tight and death overs",
-   "18 bowl",
-   "+7.2",
-   "+7.4"
-  ],
-  [
-   "2",
-   "Mujeeb Ur Rahman",
-   "Off-spinner",
-   "Afghanistan",
-   "Powerplay overs",
-   "7 bowl",
-   "+7.5",
-   "+14.5"
-  ],
-  [
-   "3",
-   "Daryl Mitchell",
-   "Middle-order batter",
-   "New Zealand",
-   "Finishing chases",
-   "26 bat",
-   "+11.1",
-   "+8.0"
-  ],
-  [
-   "4",
-   "Hasan Mahmud",
-   "Fast bowler",
-   "Bangladesh",
-   "Tight and death overs",
-   "(29) bowl",
-   "+9.1",
-   "+3.9"
-  ],
-  [
-   "5",
-   "Josh Little",
-   "Left-arm fast bowler",
-   "Ireland",
-   "Pace variety",
-   "(23) bowl",
-   "+9.0",
-   "+5.3"
-  ],
-  [
-   "6",
-   "Mark Chapman",
-   "Middle-order batter",
-   "New Zealand",
-   "Death-overs hitting",
-   "34 bat",
-   "+8.3",
-   "+6.7"
-  ],
-  [
-   "7",
-   "Mark Adair",
-   "Seam bowler",
-   "Ireland",
-   "Powerplay overs",
-   "23 bowl",
-   "+8.4",
-   "+4.5"
-  ],
-  [
-   "8",
-   "Sikandar Raza",
-   "Spin all-rounder",
-   "Zimbabwe",
-   "Middle overs, with bat and ball",
-   "22 bowl",
-   "+5.1",
-   "+6.0"
-  ],
-  [
-   "9",
-   "George Dockrell",
-   "Middle-order batter",
-   "Ireland",
-   "Finishing (base-price punt)",
-   "(31) bat",
-   "+15.5",
-   "+7.1"
-  ],
-  [
-   "10",
-   "Towhid Hridoy",
-   "Middle-order batter",
-   "Bangladesh",
-   "Steadying a chase",
-   "46 bat",
-   "+9.7",
-   "+4.2"
-  ]
- ],
+ "shami": {
+  "rank": 16,
+  "p_balls": 289,
+  "pp_balls": 242,
+  "pp_econ": 8.0,
+  "death_balls": 17,
+  "death_econ": 17.6,
+  "pressure": "+0.3",
+  "normal": "+16.4"
+ },
+ "watch_n": {
+  "bat": 105,
+  "bowl": 116
+ },
+ "boult": "+16.5",
+ "n_watch_in_ten": 5,
  "meta": {
   "auc": 0.8025,
   "brier": 0.1804,
@@ -813,7 +824,7 @@
    "below50": []
   },
   "spin_in_top10": 7,
-  "rr_bowl_below_avg_pressure": 4,
-  "rr_best_bowl_rank": 39
+  "rr_bowl_below_avg_pressure": 3,
+  "rr_best_bowl_rank": 16
  }
 }
