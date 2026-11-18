@@ -44,13 +44,13 @@ def bat_row(name):
 # ---- the ten auction picks. Every one is in the IPL 2027 pool: either in no IPL 2026 squad, or released on
 # 17 November 2026 (ipl2027_released_players.json). RR has 6 slots, 3 of them overseas, so the list is split.
 REL = json.load(open(sys.argv[2])) if len(sys.argv) > 2 else {}
-TEN = [("Blessing Muzarabani", "bowl", "Fast bowler", "New ball and middle overs", "\u20B975 lakh (KKR, 2026)"),
-       ("Daryl Mitchell", "bat", "Middle-order batter", "Finishing chases", "Not in an IPL 2026 squad"),
+TEN = [("Daryl Mitchell", "bat", "Middle-order batter", "Finishing chases", "Not in an IPL 2026 squad"),
        ("Joshua Little", "bowl", "Left-arm fast bowler", "Death overs", "Played for GT, 2023\u201324"),
-       ("Gerald Coetzee", "bowl", "Fast bowler", "Death overs (second option)", "\u20B92 crore replacement (SRH, 2026)"),
+       ("Gerald Coetzee", "bowl", "Fast bowler", "Death overs", "\u20B92 crore replacement (SRH, 2026)"),
        ("Mark Chapman", "bat", "Middle-order batter", "Back-up finisher", "Never in an IPL squad"),
        ("Bevon Jacobs", "bat", "Middle-order batter", "Young finisher to develop", "\u20B930 lakh (MI, 2025)"),
        ("Kamindu Mendis", "bat", "Batting all-rounder", "Late-overs hitting, part-time spin", "\u20B975 lakh (SRH, 2026)"),
+       ("Blessing Muzarabani", "bowl", "Fast bowler", "New-ball cover for Archer and Shami", "\u20B975 lakh (KKR, 2026)"),
        ("Akash Madhwal", "bowl", "Seam bowler", "Back-up Indian seamer", "Released by CSK"),
        ("Abishek Porel", "bat", "Wicketkeeper-batter", "Back-up keeper", "Released by DC"),
        ("M Shahrukh Khan", "bat", "Middle-order hitter", "Indian finisher", "Released by GT")]
@@ -66,7 +66,7 @@ def bowl_ev(n):
     x = bowl_row(n, SHOW.get(n)); x[2] = ctry(x[2]); return x
 def bat_ev(n):
     x = bat_row(n); x[0] = SHOW.get(n, n); x[2] = ctry(x[2]); return x
-T["ev_bowl"] = [bowl_ev(n) for n in ["Blessing Muzarabani", "Joshua Little", "Gerald Coetzee", "Akash Madhwal"]]
+T["ev_bowl"] = [bowl_ev(n) for n in ["Joshua Little", "Gerald Coetzee", "Blessing Muzarabani", "Akash Madhwal"]]
 T["ev_bat"] = [bat_ev(n) for n in ["Daryl Mitchell", "Mark Chapman", "Bevon Jacobs", "Kamindu Mendis", "Abishek Porel", "M Shahrukh Khan"]]
 sh = F[F.name == "Mohammed Shami"].iloc[0]
 T["shami"] = {"rank": int(sh["rank"]), "p_balls": int(sh.p_balls), "pp_balls": int(sh.pp_p_balls), "pp_econ": round(float(sh.pp_p_econ), 1),

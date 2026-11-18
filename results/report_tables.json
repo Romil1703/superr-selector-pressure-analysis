@@ -503,17 +503,6 @@
  "ten": [
   [
    "1",
-   "Blessing Muzarabani",
-   "Fast bowler",
-   "Zimbabwe",
-   "New ball and middle overs",
-   "₹75 lakh (KKR, 2026)",
-   "10 bowl",
-   "+8.3",
-   "+10.4"
-  ],
-  [
-   "2",
    "Daryl Mitchell",
    "Middle-order batter",
    "New Zealand",
@@ -524,7 +513,7 @@
    "+8.0"
   ],
   [
-   "3",
+   "2",
    "Josh Little",
    "Left-arm fast bowler",
    "Ireland",
@@ -535,18 +524,18 @@
    "+5.3"
   ],
   [
-   "4",
+   "3",
    "Gerald Coetzee",
    "Fast bowler",
    "South Africa",
-   "Death overs (second option)",
+   "Death overs",
    "₹2 crore replacement (SRH, 2026)",
    "(40) bowl",
    "+7.2",
    "+0.3"
   ],
   [
-   "5",
+   "4",
    "Mark Chapman",
    "Middle-order batter",
    "New Zealand",
@@ -557,7 +546,7 @@
    "+6.7"
   ],
   [
-   "6",
+   "5",
    "Bevon Jacobs",
    "Middle-order batter",
    "New Zealand",
@@ -568,7 +557,7 @@
    "+5.7"
   ],
   [
-   "7",
+   "6",
    "Kamindu Mendis",
    "Batting all-rounder",
    "Sri Lanka",
@@ -577,6 +566,17 @@
    "(58) bat",
    "+10.1",
    "+0.7"
+  ],
+  [
+   "7",
+   "Blessing Muzarabani",
+   "Fast bowler",
+   "Zimbabwe",
+   "New-ball cover for Archer and Shami",
+   "₹75 lakh (KKR, 2026)",
+   "10 bowl",
+   "+8.3",
+   "+10.4"
   ],
   [
    "8",
@@ -614,18 +614,6 @@
  ],
  "ev_bowl": [
   [
-   "Blessing Muzarabani",
-   "RA fast-medium",
-   "Zimbabwe",
-   "10",
-   "164",
-   "+8.3",
-   "7.39 / 7.56",
-   "11.3 (41)",
-   "6.6 (98)",
-   "62%"
-  ],
-  [
    "Josh Little",
    "LA fast",
    "Ireland",
@@ -648,6 +636,18 @@
    "5.8 (26)",
    "9.5 (45)",
    "57%"
+  ],
+  [
+   "Blessing Muzarabani",
+   "RA fast-medium",
+   "Zimbabwe",
+   "10",
+   "164",
+   "+8.3",
+   "7.39 / 7.56",
+   "11.3 (41)",
+   "6.6 (98)",
+   "62%"
   ],
   [
    "Akash Madhwal",
